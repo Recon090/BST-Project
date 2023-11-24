@@ -1,40 +1,48 @@
 #include <iostream>
 using namespace std;
-template <typename T> 
 
-struct Node{
-  T data;
-  Node* left, right;
+
+struct BstNode{
+  int data;
+  BstNode* left;
+  BstNode* right;
 };
 
 
-template <typename T> 
 
-Node* getNewNode(T data){
-  Node* newNode = new Node();
+class BST{
+  BstNode *root = NULL;
+public:
+BstNode* getNewNode(int data){
+  BstNode* newNode = new BstNode();
   newNode->data = data;
   newNode->left = newNode->right = NULL;
   return newNode;
 }
-template <typename T> 
+BstNode* insert(int data){
+  if(root==NULL){
+    root = getNewNode(data);
 
-void Insert(Node** root, T data){
-  if(*root == NULL){
-      *root = getNewNode(data);
-  }else if(data<= *root->data){
-    *root->left = Insert(*root->left,data);
-  }else if(data>=*root->data){
-    *root->right = Insert(*root->right,data);
+  }else if(root->data >=data){
+    root->left= insert(root->left,data);
+
+  }else{
+    root->right = insert(root->right,data);
   }
+    return root;
 }
-template <typename T>
-void remove(const T &t){
+};
 
+
+
+
+BstNode* remove(const int &t){
+  
 }
-template <typename T> 
+
 int main(){
-  Node *root = NULL;
-  Insert(root, 3);
-  Insert(root,5);
-  return 0;
+  BstNode *root = NULL;
+  root=insert(root, 15);
+  root=insert(root, 10);
+  root=insert(root, 20);
 }
